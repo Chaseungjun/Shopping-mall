@@ -1,0 +1,9 @@
+package com.example.shop2.domain.repository;
+
+import com.example.shop2.domain.entity.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
+
+    Member findByEmail(String email);
+}

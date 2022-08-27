@@ -1,0 +1,27 @@
+package com.example.shop2.domain.repository;
+
+import com.example.shop2.domain.entity.Order;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
+    // 현재 로그인한 사용자의 주문이력을 조회하는 쿼리 , 복잡하지않다면 QueryDsl말고 @Query를 써도 됨
+    @Query("select o from Order o " +
+            "where o.member.email = :email " +            // 파라미터는 email
+            "order by o.orderDate desc"
+    )
+    List<Order> findOrders(@Param("email") String email, Pageable pageable);
+
+
+    // 현재 로그인한 회원의 주문 개수가 몇 개인지 조회
+    @Query("select count(o) from Order o " +
+            "where o.member.email = :email"
+    )
+    Long countOrder(@Param("email") String email);
+
+}
