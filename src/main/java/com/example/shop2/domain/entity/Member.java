@@ -1,5 +1,6 @@
 package com.example.shop2.domain.entity;
 
+import com.example.shop2.domain.BaseEntity;
 import com.example.shop2.domain.BaseTimeEntity;
 import com.example.shop2.domain.constant.Role;
 import com.example.shop2.domain.dto.MemberFormDto;
@@ -11,24 +12,23 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Member extends BaseTimeEntity {
+@Table(name="member")
+@Getter @Setter
+@ToString
+public class Member extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "member_id")
-    private Long memberId;
+    @Id
+    @Column(name="member_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
+    private String name;
 
     @Column(unique = true)
     private String email;
 
     private String password;
-
-    @Column(length = 5)
-    private String name;
-
 
     private String address;
 
@@ -47,6 +47,10 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "member")
     private List<Order> order = new ArrayList<>();
 
+    public Member() {
+
+    }
+
     public static Member of(String email, String password, String name, String address, Role role) {
         return new Member(email, password, name, address, role);
     }
@@ -61,21 +65,6 @@ public class Member extends BaseTimeEntity {
                 .build();
     }
 
-    public void changeEmail(String email) {
-        this.email = email;
-    }
-
-    public void changeName(String name) {
-        this.name = name;
-    }
-
-    public void changeAddress(String address) {
-        this.address = address;
-    }
-
-    public void changeRole(Role role) {
-        this.role = role;
-    }
 
 
 }

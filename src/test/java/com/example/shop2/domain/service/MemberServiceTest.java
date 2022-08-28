@@ -53,7 +53,7 @@ class MemberServiceTest {
         Member member = createMember();
 
         Long fakeMemberId = 1L;
-        ReflectionTestUtils.setField(member, "memberId", fakeMemberId);
+        ReflectionTestUtils.setField(member, "id", fakeMemberId);
         // ReflectionTestUtils.setField(대상 객체, "변수명", 원하는 값);
 
         //mocking
@@ -65,7 +65,7 @@ class MemberServiceTest {
         Member findMember = memberRepository.findById(newMemberId).get();
 
         //then
-        assertThat(member.getMemberId()).isEqualTo(findMember.getMemberId());
+        assertThat(member.getId()).isEqualTo(findMember.getId());
     }
 
     @Test

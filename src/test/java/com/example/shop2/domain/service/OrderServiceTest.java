@@ -1,6 +1,7 @@
 package com.example.shop2.domain.service;
 
 import com.example.shop2.domain.constant.ItemSellStatus;
+import com.example.shop2.domain.constant.OrderStatus;
 import com.example.shop2.domain.dto.OrderDto;
 import com.example.shop2.domain.entity.Item;
 import com.example.shop2.domain.entity.Member;
@@ -74,6 +75,29 @@ class OrderServiceTest {
         int totalPrice = orderDto.getCount() * item.getPrice();  // 주문된 수량 * 해당 상품의 가격
        //then
         assertEquals(totalPrice, savedOrder.getTotalPrice());
+    }
+
+    @Test
+    @DisplayName("cancelOrder")
+    void cancelOrder() throws Exception {
+        //given
+        Member member = createMember();
+        Item item = createItem();
+
+        OrderDto orderDto = new OrderDto();
+        orderDto.setItemId(item.getId());
+        orderDto.setCount(10);
+
+        Long orderId = orderService.Order(orderDto, member.getEmail());
+        //when
+        orderService.validateOrder(orderId, member.getEmail());
+        orderService.cancelOrder(orderId);
+
+        Order order = orderRepository.findById(orderId).orElseThrow(EntityNotFoundException::new);
+        //then
+        assertEquals(OrderStatus.CANCEL,order.getOrderStatus());
+        assertEquals(10, item.getStockNumber());
+
     }
 
 }

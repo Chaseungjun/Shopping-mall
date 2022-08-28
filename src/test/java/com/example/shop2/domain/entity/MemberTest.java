@@ -46,10 +46,9 @@ class MemberTest {
             em.flush();
             em.clear();
             //when
-            memberRepository.findById(member.getMemberId()).orElseThrow(EntityNotFoundException::new);
+            memberRepository.findById(member.getId()).orElseThrow(EntityNotFoundException::new);
 
-            //then
-            System.out.println("register time" + member.getRegTime());
+
         }
 
     }

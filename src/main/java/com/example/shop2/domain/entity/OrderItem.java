@@ -62,6 +62,10 @@ public class OrderItem extends BaseTimeEntity {
         return orderItem;
     }
 
+    public void cancel(){
+        this.getItem().addStock(count);  // 주문상품의 주문을 취소하면 그 주문수량만큼 상품의 재고를 더해줌
+    }
+
     public int getTotalPrice(){
         return orderPrice * count;   // 주문상품의 총 가격 (주문상품 x 주문상품의 개수)
     }

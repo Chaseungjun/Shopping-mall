@@ -70,4 +70,12 @@ public class Order extends BaseTimeEntity {
         }
         return totalPrice;
     }
+
+    public void cancelOrder(){   // 주문상태를 취소상태로 만들고 주문상품들을 취소
+        this.orderStatus = OrderStatus.CANCEL;
+
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
 }

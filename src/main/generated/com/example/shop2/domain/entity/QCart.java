@@ -24,10 +24,10 @@ public class QCart extends EntityPathBase<Cart> {
 
     public final com.example.shop2.domain.QBaseTimeEntity _super = new com.example.shop2.domain.QBaseTimeEntity(this);
 
-    public final NumberPath<Long> cartId = createNumber("cartId", Long.class);
-
     //inherited
     public final StringPath createdBy = _super.createdBy;
+
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final QMember member;
 
