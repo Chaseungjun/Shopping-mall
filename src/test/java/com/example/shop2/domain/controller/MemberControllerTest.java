@@ -44,7 +44,7 @@ class MemberControllerTest {
     PasswordEncoder passwordEncoder;
 
 
-    private Long createMember(String email, String password) {
+    private Member createMember(String email, String password) {
         MemberFormDto memberFormDto = new MemberFormDto();
         memberFormDto.setAddress("address");
         memberFormDto.setEmail(email);

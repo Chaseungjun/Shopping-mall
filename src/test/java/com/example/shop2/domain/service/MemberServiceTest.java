@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import javax.persistence.EntityExistsException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -61,8 +62,8 @@ class MemberServiceTest {
         given(memberRepository.findById(fakeMemberId)).willReturn(Optional.ofNullable(member));
 
         //when
-        Long newMemberId = memberService.saveMember(member);
-        Member findMember = memberRepository.findById(newMemberId).get();
+        Member saveMember = memberService.saveMember(member);
+        Member findMember = memberRepository.findById(saveMember.getId()).orElseThrow(EntityExistsException::new);
 
         //then
         assertThat(member.getId()).isEqualTo(findMember.getId());
@@ -84,7 +85,6 @@ class MemberServiceTest {
         //then
         assertThatThrownBy(() -> memberService.saveMember(member2), "이미 가입된 회원입니다.", IllegalStateException.class);
     }
-
 
 
 }
