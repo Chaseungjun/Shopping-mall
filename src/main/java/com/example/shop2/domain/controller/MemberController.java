@@ -58,8 +58,7 @@ public class MemberController {
         }catch (IllegalStateException e){
             log.info("errorMessages", e.getMessage());
             model.addAttribute("errorMessage", e.getMessage());
-            //일단 중복되는 회원이 있는경우 뷰로 보여주려면 model객체가 필요함
-            // 근데 @ModelAttribute랑 model을 같이 쓸 수 있는지 모르겠음
+
             return "member/memberForm";
         }
 
