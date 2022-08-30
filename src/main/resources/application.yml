@@ -15,17 +15,18 @@ spring:
       max-file-size: 20MB  #파일 1개당 최대 사이즈
       max-request-size: 100MB #요청 1번당 최대 파일크기
 
+  jpa:
+    properties:
+      hibernate:
+        default_fetch_size: 100
+        show_sql: true
+        format_sql: true
+        ddl-auto: create
+#        database-platform : org.hibernate.dialect.MySQL8Dialect
+
+
+
 itemImgLocation: C:/shop/item  #상품 이미지 업로드 경로, 이미지파일을 해당 경로에 저장
 uploadPath: file:///C:/shop/   #리소스 업로드 경로, 컴퓨터 내부의 로컬저장소
-
-jpa:
-  properties:
-    hibernate:
-      default_fetch_size: 100
-      show_sql: true
-      format_sql: true
-      ddl:
-        auto: create
-      database-platform : org.hibernate.dialect.MySQL8Dialect
 
 
