@@ -42,7 +42,7 @@ public class OrderService {
 
         Order order = Order.createOrder(member, orderItemList);
         orderRepository.save(order);
-        return order.getOrderId();
+        return order.getId();
 
     }
     @Transactional(readOnly = true)

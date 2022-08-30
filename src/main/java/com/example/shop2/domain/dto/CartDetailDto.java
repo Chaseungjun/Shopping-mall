@@ -1,6 +1,7 @@
 package com.example.shop2.domain.dto;
 
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ public class CartDetailDto {
 
     private String imgUrl;
 
+    @QueryProjection
     public CartDetailDto(Long cartItemId, String itemNm, int count, int price, String imgUrl) {
         this.cartItemId = cartItemId;
         this.itemNm = itemNm;

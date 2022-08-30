@@ -35,10 +35,10 @@ public class QCart extends EntityPathBase<Cart> {
     public final StringPath modifiedBy = _super.modifiedBy;
 
     //inherited
-    public final DatePath<java.time.LocalDate> modifiedTime = _super.modifiedTime;
+    public final DateTimePath<java.time.LocalDateTime> modifiedTime = _super.modifiedTime;
 
     //inherited
-    public final DatePath<java.time.LocalDate> regTime = _super.regTime;
+    public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;
 
     public QCart(String variable) {
         this(Cart.class, forVariable(variable), INITS);

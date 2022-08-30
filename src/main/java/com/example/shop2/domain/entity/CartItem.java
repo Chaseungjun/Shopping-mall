@@ -15,7 +15,7 @@ public class CartItem extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cart_item_id")
-    private Long CartItemId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
@@ -36,5 +36,9 @@ public class CartItem extends BaseTimeEntity {
     }
     public void addCartItem(int count){  // 장바구니에 상품이 담겨있는데 추가로 더 담을 때
         this.count += count;
+    }
+
+    public void updateCount(int count){
+        this.count = count;
     }
 }

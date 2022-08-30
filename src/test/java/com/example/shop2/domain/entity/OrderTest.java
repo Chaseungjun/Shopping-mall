@@ -81,7 +81,7 @@ class OrderTest {
 
         em.clear();
 
-        Order savedOrder = orderRepository.findById(order.getOrderId()).orElseThrow(EntityExistsException::new);
+        Order savedOrder = orderRepository.findById(order.getId()).orElseThrow(EntityExistsException::new);
 
         //then
         assertEquals(1, savedOrder.getOrderItems().size());
@@ -138,7 +138,7 @@ class OrderTest {
         void lazyLoadingTest () throws Exception {
             //given
             Order order = createOrder();
-            Long orderItemId = order.getOrderItems().get(0).getOrderItemId();
+            Long orderItemId = order.getOrderItems().get(0).getId();
             // 주문된 주문상품 리스트 중 0번째 인덱스의 주문상품 아이디를 가져옴
             em.flush();
             em.clear();

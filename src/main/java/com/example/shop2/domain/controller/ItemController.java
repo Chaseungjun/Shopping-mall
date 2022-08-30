@@ -93,7 +93,7 @@ public class ItemController {
         return "redirect:/";
     }
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
-    public String itemManage(@PathVariable("Page") Optional<Integer> page, ItemSearchDto itemSearchDto, Model model){
+    public String itemManage(@PathVariable("page") Optional<Integer> page, ItemSearchDto itemSearchDto, Model model){
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
 
         Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);

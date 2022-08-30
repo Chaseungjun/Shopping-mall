@@ -53,7 +53,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
        }else if (StringUtils.equals("6m", searchDateType)){
            dateTime = dateTime.minusMonths(6);
        }
-       return item.regTime.after(LocalDate.from(dateTime));  // 해당 시간 이후로 등록된 상품
+       return item.regTime.after(LocalDateTime.now());  // 해당 시간 이후로 등록된 상품
    }
 
    private BooleanExpression searchByLike(String searchBy, String searchQuery){ //검색조건, 검색어

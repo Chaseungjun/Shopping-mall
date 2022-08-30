@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class Order extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
-    private Long orderId;
+    private Long id;
 
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -38,7 +38,7 @@ public class Order extends BaseTimeEntity {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Builder
-    public Order(LocalDate orderDate, OrderStatus orderStatus, Member member, List<OrderItem> orderItems) {
+    public Order(LocalDateTime orderDate, OrderStatus orderStatus, Member member, List<OrderItem> orderItems) {
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.member = member;
@@ -59,7 +59,7 @@ public class Order extends BaseTimeEntity {
 //            order.addOrderItem(orderItem);
         }
         order.setOrderStatus(OrderStatus.ORDER);
-        order.setOrderDate(LocalDate.now());
+        order.setOrderDate(LocalDateTime.now());
         return order;
     }
 
